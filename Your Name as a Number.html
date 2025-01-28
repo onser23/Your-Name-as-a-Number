@@ -1,0 +1,55 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Your Name as a Number</title>
+
+    <style>
+        #result {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Calculate the Alphabetical Sum of Your Name</h1>
+
+    <label for="nameInput">Enter Your Name:</label>
+    <input type="text" id="nameInput" placeholder="Example: Samad" oninput="blockSpace()">
+    <button onclick="calculate()">Calculate</button>
+    <button onclick="clearInput()">Clear</button>
+    <h2>Sum of Letters: <span id="result">0</span></h2>
+
+    <script>
+
+        function blockSpace() {
+            let nameInput = document.getElementById("nameInput");
+            nameInput.value = nameInput.value.replace(/[^a-zA-Z]/g, '');
+        }
+
+        function clearInput() {
+            document.getElementById("nameInput").value = "";
+            document.getElementById("result").textContent = 0;
+        }
+
+        function calculate() {
+            let name = document.getElementById("nameInput").value.toLowerCase();
+            name = name.replace(/\s/g, '');
+            let summOfLetter = 0;
+
+            for (let i = 0; i < name.length; i++) {
+                let letter = name[i];
+
+                if (letter >= 'a' && letter <= 'z') {
+                    summOfLetter += letter.charCodeAt(0) - 96;
+                }
+            }
+
+            document.getElementById("result").textContent = summOfLetter;
+        }
+    </script>
+
+
+</body>
+
+</html>
